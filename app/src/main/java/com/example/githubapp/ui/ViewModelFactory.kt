@@ -25,6 +25,9 @@ class ViewModelFactory private constructor(
         if(modelClass.isAssignableFrom(MainViewModel::class.java)){
             return MainViewModel(mApplication) as T
         }
+        if(modelClass.isAssignableFrom(UserDetailViewModel::class.java)){
+            return UserDetailViewModel(mApplication) as T
+        }
         throw IllegalArgumentException("Unknown ViewModel Class ${modelClass.name}")
     }
 

@@ -3,6 +3,7 @@ package com.example.githubapp.ui
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
@@ -48,24 +49,6 @@ class UserListAdapter(private val dao: FavouriteDao) : ListAdapter<ItemsItem, Us
             holder.binding.root.context.startActivity(moveIntent) }
 
         holder.bind(review)
-        holder.binding.cbFavourite.setOnCheckedChangeListener { checkBox, isChecked ->
-            if (isChecked) {
-                CoroutineScope(Dispatchers.IO).launch {
-                    val data = Favourite(null, review.login, review.avatarUrl)
-                    dao.insert(data)
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(holder.binding.root.context, "Ditambahkan ke favorit", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            } else {
-                CoroutineScope(Dispatchers.IO).launch {
-                    dao.deleteByUsername(review.login)
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(holder.binding.root.context, "Dihapus dari favorit", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        }
 
     }
 
@@ -76,7 +59,7 @@ class UserListAdapter(private val dao: FavouriteDao) : ListAdapter<ItemsItem, Us
             Glide.with(binding.root)
                 .load(detail.avatarUrl) // URL Gambar
                 .into(binding.ivAvatar)
-            binding.cbFavourite.isChecked = detail.isFavourite == true
+
         }
     }
 

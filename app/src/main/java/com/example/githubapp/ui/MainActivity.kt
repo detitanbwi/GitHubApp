@@ -32,29 +32,27 @@ class MainActivity : AppCompatActivity() {
         binding.rvUsers.addItemDecoration(itemDecoration)
 
         binding.fab.setOnClickListener{
-            val moveIntent = Intent(this,FavouriteUserActivity::class.java)
-            //moveIntent.putExtra(FavouriteUserActivity.USERLOGIN,review.login)
-            this.startActivity(moveIntent)
+
         }
 
         mainViewModel.isLoading.observe(this) {
             showLoading(it)
         }
 
-//        with(binding) {
-//            searchView.setupWithSearchBar(searchBar)
-//            searchView
-//                .editText
-//                .setOnEditorActionListener { textView, actionId, event ->
-//                    searchBar.text = searchView.text
-//                    searchView.hide()
-//                    mainViewModel.getUsers(searchView.text.toString())
-//                    mainViewModel.listUser.observe(this@MainActivity){
-//                        showUsers(it)
-//                    }
-//                    false
-//                }
-//        }
+        with(binding) {
+            searchView.setupWithSearchBar(searchBar)
+            searchView
+                .editText
+                .setOnEditorActionListener { textView, actionId, event ->
+                    searchBar.text = searchView.text
+                    searchView.hide()
+                    mainViewModel.getUsers(searchView.text.toString())
+                    mainViewModel.listUser.observe(this@MainActivity){
+                        showUsers(it)
+                    }
+                    false
+                }
+        }
 
         mainViewModel.listUser.observe(this){
             showUsers(it)

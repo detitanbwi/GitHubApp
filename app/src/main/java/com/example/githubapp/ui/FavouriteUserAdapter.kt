@@ -42,13 +42,6 @@ class FavouriteUserAdapter(private val dao: FavouriteDao) : ListAdapter<Favourit
             val moveIntent = Intent(holder.binding.root.context,UserDetailActivity::class.java)
             moveIntent.putExtra(UserDetailActivity.USERLOGIN,favourite.username)
             holder.binding.root.context.startActivity(moveIntent) }
-        holder.binding.cbFavourite.setOnCheckedChangeListener { checkBox, isChecked ->
-            if (!isChecked) {
-                CoroutineScope(Dispatchers.IO).launch {
-                    favourite.username?.let { dao.deleteByUsername(it) }
-                }
-            }
-        }
         holder.bind(favourite)
     }
 
@@ -61,8 +54,6 @@ class FavouriteUserAdapter(private val dao: FavouriteDao) : ListAdapter<Favourit
                     .load(favourite.avatarUrl)
                     .into(ivAvatar)
                 val favouriteDao: FavouriteDao
-
-                cbFavourite.isChecked=true
             }
         }
     }

@@ -25,4 +25,7 @@ class FavouriteRepository(application: Application) {
         executorService.execute { mFavouritesDao.update(favourite) }
     }
     fun isUsernameExists(username: String): LiveData<Boolean> = mFavouritesDao.isUsernameExists(username)
+    fun deleteByUsername(username: String){
+        executorService.execute { mFavouritesDao.deleteByUsername(username) }
+    }
 }

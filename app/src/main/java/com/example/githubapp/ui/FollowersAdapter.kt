@@ -41,24 +41,7 @@ class FollowersAdapter(private val dao: FavouriteDao) : ListAdapter<FollowersRes
             val moveIntent = Intent(holder.binding.root.context,UserDetailActivity::class.java)
             moveIntent.putExtra(UserDetailActivity.USERLOGIN,review.login)
             holder.binding.root.context.startActivity(moveIntent) }
-        holder.binding.cbFavourite.setOnCheckedChangeListener { checkBox, isChecked ->
-            if (isChecked) {
-                CoroutineScope(Dispatchers.IO).launch {
-                    val data = Favourite(null, review.login, review.avatarUrl)
-                    dao.insert(data)
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(holder.binding.root.context, "Ditambahkan ke favorit", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            } else {
-                CoroutineScope(Dispatchers.IO).launch {
-                    dao.deleteByUsername(review.login)
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(holder.binding.root.context, "Dihapus dari favorit", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        }
+
         holder.bind(review)
     }
 

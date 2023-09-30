@@ -1,5 +1,6 @@
 package com.example.githubapp.ui
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,11 +9,15 @@ import com.example.githubapp.data.response.DetailResponse
 import com.example.githubapp.data.response.FollowersResponseItem
 import com.example.githubapp.data.response.FollowingResponseItem
 import com.example.githubapp.data.retrofit.ApiConfig
+import com.example.githubapp.database.Favourite
+import com.example.githubapp.repository.FavouriteRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UserDetailViewModel : ViewModel() {
+class UserDetailViewModel(private val application: Application) : ViewModel() {
+
+    private val repository: FavouriteRepository = FavouriteRepository(application)
 
     private val _userDetail = MutableLiveData<DetailResponse?>()
     val userDetail : MutableLiveData<DetailResponse?> = _userDetail
@@ -114,4 +119,13 @@ class UserDetailViewModel : ViewModel() {
         })
     }
 
+    fun isUsernameExist(username: String):LiveData<Boolean> {
+        return repository.isUsernameExists(username)
+    }
+    fun insert(favourite: Favourite) {
+        repository.insert(favourite)
+    }
+    fun delete(username: String) {
+        repository.deleteByUsername(username)
+    }
 }

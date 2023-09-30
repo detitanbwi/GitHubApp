@@ -28,7 +28,9 @@ class FollowingFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private  lateinit var _binding: FragmentFollowingBinding
-    private val userDetailViewModel by viewModels<UserDetailViewModel>()
+    private val userDetailViewModel by viewModels<UserDetailViewModel>{
+        ViewModelFactory.getInstance(requireActivity().application)
+    }
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
