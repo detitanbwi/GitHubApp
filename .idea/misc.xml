@@ -8,10 +8,12 @@
         <entry key="..\:/Users/detit/AndroidStudioProjects/GitHubApp/app/src/main/res/drawable/selector_favourite_item.xml" value="0.2555" />
         <entry key="..\:/Users/detit/AndroidStudioProjects/GitHubApp/app/src/main/res/layout/activity_favourite_user.xml" value="0.264" />
         <entry key="..\:/Users/detit/AndroidStudioProjects/GitHubApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/detit/AndroidStudioProjects/GitHubApp/app/src/main/res/layout/activity_settings.xml" value="0.25" />
         <entry key="..\:/Users/detit/AndroidStudioProjects/GitHubApp/app/src/main/res/layout/activity_user_detail.xml" value="0.264" />
         <entry key="..\:/Users/detit/AndroidStudioProjects/GitHubApp/app/src/main/res/layout/fragment_followers.xml" value="0.25" />
         <entry key="..\:/Users/detit/AndroidStudioProjects/GitHubApp/app/src/main/res/layout/fragment_following.xml" value="0.25" />
         <entry key="..\:/Users/detit/AndroidStudioProjects/GitHubApp/app/src/main/res/layout/item_user.xml" value="0.46647230320699706" />
+        <entry key="..\:/Users/detit/AndroidStudioProjects/GitHubApp/app/src/main/res/menu/option_menu.xml" value="0.25" />
       </map>
     </option>
   </component>

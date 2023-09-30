@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.githubapp.R
 import com.example.githubapp.data.response.ItemsItem
 import com.example.githubapp.database.FavouriteRoomDatabase
 import com.example.githubapp.databinding.ActivityMainBinding
@@ -23,6 +24,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.searchBar.inflateMenu(R.menu.option_menu)
+        binding.searchBar.setOnMenuItemClickListener { menuItem ->
+            // Handle menuItem click.
+            when (menuItem.itemId) {
+                R.id.menu1 -> {
+                    val intent = Intent(this, FavouriteUserActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.menu2 -> {
+                    val intent = Intent(this,SettingsActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+
+        }
 
         mainViewModel = obtainViewModel(this@MainActivity)
 
