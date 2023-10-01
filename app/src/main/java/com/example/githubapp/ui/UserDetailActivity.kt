@@ -1,5 +1,6 @@
 package com.example.githubapp.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -110,6 +111,15 @@ class UserDetailActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+
+        binding.fabShare.setOnClickListener {
+            val sendIntent = Intent().apply {
+                action = Intent.ACTION_SEND  // Tetapkan aksi ke ACTION_SEND
+                type = "text/plain"         // Tetapkan tipe data menjadi teks biasa
+                putExtra(Intent.EXTRA_TEXT, "Teks yang ingin Anda bagikan")
+            }
+            startActivity(sendIntent)
         }
 
 
