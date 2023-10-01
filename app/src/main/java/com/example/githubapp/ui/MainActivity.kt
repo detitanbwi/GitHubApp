@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubapp.R
 import com.example.githubapp.data.response.ItemsItem
 import com.example.githubapp.database.FavouriteRoomDatabase
+import com.example.githubapp.database.SettingPreferences
+import com.example.githubapp.database.dataStore
 import com.example.githubapp.databinding.ActivityMainBinding
 import kotlinx.coroutines.channels.Channel
 
@@ -24,6 +27,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val pref = SettingPreferences.getInstance(application.dataStore)
+        val settingsViewModel =
+            ViewModelProvider(this,ViewModelFactory.getInstance(application,pref)).get(
+                SettingsViewModel::class.java
+            )
+
+        settingsViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
 
         binding.searchBar.inflateMenu(R.menu.option_menu)
         binding.searchBar.setOnMenuItemClickListener { menuItem ->
@@ -81,7 +97,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun obtainViewModel(mainActivity: MainActivity): MainViewModel {
-        val factory = ViewModelFactory.getInstance(mainActivity.application)
+        val pref = SettingPreferences.getInstance(application.dataStore)
+        val factory = ViewModelFactory.getInstance(mainActivity.application,pref)
         return ViewModelProvider(mainActivity,factory).get(MainViewModel::class.java)
     }
 

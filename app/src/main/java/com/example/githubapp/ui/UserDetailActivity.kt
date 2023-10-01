@@ -15,6 +15,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.githubapp.R
 import com.example.githubapp.SectionsPagerAdapter
 import com.example.githubapp.database.Favourite
+import com.example.githubapp.database.SettingPreferences
+import com.example.githubapp.database.dataStore
 import com.example.githubapp.databinding.ActivityUserDetailBinding
 import com.example.githubapp.repository.FavouriteRepository
 import com.google.android.material.tabs.TabLayout
@@ -27,7 +29,8 @@ import kotlinx.coroutines.withContext
 class UserDetailActivity : AppCompatActivity() {
     private  lateinit var binding: ActivityUserDetailBinding
     private val UserDetailViewModel by viewModels<UserDetailViewModel>(){
-        ViewModelFactory.getInstance(application)
+        val pref = SettingPreferences.getInstance(application.dataStore)
+        ViewModelFactory.getInstance(application,pref)
     }
     private lateinit var favouriteRepository: FavouriteRepository
     private lateinit var data: Favourite
