@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/UserDetailLayout"
         android:layout_width="match_parent"
-        android:layout_height="218dp">
+        android:layout_height="231dp">
 
         <ImageView
             android:id="@+id/ivDisplayAvatar"
@@ -21,6 +21,7 @@
             app:layout_constraintHorizontal_bias="0.088"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.333"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -29,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:text="tv"
+            android:text="-"
             android:textSize="19sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -40,7 +41,7 @@
             android:id="@+id/tvDisplayName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="tv"
+            android:text="-"
             android:textSize="19sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tvDisplayUsername"
@@ -68,7 +69,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.895"
+            app:layout_constraintVertical_bias="0.977"
             app:srcCompat="@drawable/ic_favourite_outlined" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -80,7 +81,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.901"
+            app:layout_constraintVertical_bias="0.977"
             app:srcCompat="@drawable/ic_share" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -98,6 +98,7 @@ class UserDetailActivity : AppCompatActivity() {
                         }
                     }
                 }
+                binding.floatingActionButton.setImageResource(R.drawable.ic_favourite_filled)
 
             }else {
                 binding.floatingActionButton.setOnClickListener {
@@ -110,7 +111,9 @@ class UserDetailActivity : AppCompatActivity() {
                         }
                     }
                 }
+                binding.floatingActionButton.setImageResource(R.drawable.ic_favourite_outlined)
             }
+
         }
 
         binding.fabShare.setOnClickListener {

@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.githubapp.R
 import com.example.githubapp.data.response.FollowersResponseItem
 import com.example.githubapp.database.FavouriteRoomDatabase
+import com.example.githubapp.database.SettingPreferences
+import com.example.githubapp.database.dataStore
 import com.example.githubapp.databinding.FragmentFollowersBinding
 
 private const val ARG_PARAM1 = "param1"
@@ -27,7 +29,10 @@ class FollowersFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private  lateinit var _binding: FragmentFollowersBinding
-    private val userDetailViewModel by viewModels<UserDetailViewModel>()
+    private val userDetailViewModel by viewModels<UserDetailViewModel>{
+        val pref = SettingPreferences.getInstance(requireActivity().application.dataStore)
+        ViewModelFactory.getInstance(requireActivity().application,pref)
+    }
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
